@@ -1,0 +1,7 @@
+{
+  "name": "projectakhirmobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
