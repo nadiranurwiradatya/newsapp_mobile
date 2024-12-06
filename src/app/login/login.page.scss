@@ -1,0 +1,33 @@
+.logo-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.links-container {
+  margin-top: 30px;
+  text-align: center;
+
+  p {
+    margin: 10px 0;
+    font-size: 0.9rem;
+  }
+
+  a {
+    color: var(--ion-color-primary);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

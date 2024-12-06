@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Konversi Uang & Waktu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Pilihan Konversi -->
+  <ion-list>
+    <ion-radio-group [(ngModel)]="conversionType">
+      <ion-list-header>
+        <ion-label>Pilih Jenis Konversi</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Konversi Uang</ion-label>
+        <ion-radio slot="start" value="money"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Konversi Waktu</ion-label>
+        <ion-radio slot="start" value="time"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <!-- Form Konversi Uang -->
+  <div *ngIf="conversionType === 'money'">
+    <h2>Konversi Uang</h2>
+    <ion-item>
+      <ion-label position="floating">Masukkan Jumlah (USD)</ion-label>
+      <ion-input [(ngModel)]="amount" type="number"></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-radio-group [(ngModel)]="selectedCurrency">
+        <ion-list-header>
+          <ion-label>Pilih Mata Uang Tujuan</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let currency of currencies">
+          <ion-label>{{ currency.name }} ({{ currency.code }})</ion-label>
+          <ion-radio slot="start" [value]="currency"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-button expand="full" (click)="convertMoney()">Konversi</ion-button>
+    <div *ngIf="convertedAmount !== null">
+      <h3>
+        Hasil: {{ convertedAmount | number:'1.2-2' }} {{ selectedCurrency?.code
+        }}
+      </h3>
+    </div>
+  </div>
+
+  <!-- Form Konversi Waktu -->
+  <div *ngIf="conversionType === 'time'">
+    <h2>Konversi Waktu</h2>
+    <ion-list>
+      <ion-radio-group [(ngModel)]="selectedTimezone">
+        <ion-list-header>
+          <ion-label>Pilih Zona Waktu</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let timezone of timezones">
+          <ion-label>{{ timezone.name }}</ion-label>
+          <ion-radio slot="start" [value]="timezone"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-button expand="full" (click)="convertTime()">Konversi</ion-button>
+    <div *ngIf="convertedTime !== null">
+      <h3>Waktu Lokal: {{ convertedTime }}</h3>
+    </div>
+  </div>
+</ion-content>
